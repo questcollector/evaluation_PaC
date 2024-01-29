@@ -82,8 +82,7 @@ env: {}
 labels: {}
 
 # Annotations to apply to all resources
-annotations: 
-  "helm.sh/hook": post-install
+annotations: {}
 
 nodeSelector: {}
 

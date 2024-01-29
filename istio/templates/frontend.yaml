@@ -1,0 +1,10 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: {{ include "istio.name" .}}-frontend-config
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    {{ .Values.ingress.annotations | toYaml | nindent 4 }}
+spec:
+  redirectToHttps:
+    enabled: true
