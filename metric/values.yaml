@@ -1,3 +1,6 @@
+global:
+  url: "www.evaluatemessage.dev"
+
 prometheus:
   server:
     baseURL: "http://localhost:80/prometheus"
