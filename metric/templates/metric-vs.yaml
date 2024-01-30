@@ -17,6 +17,8 @@ spec:
         prefix: /grafana
     - uri:
         prefix: /grafana/
+    rewrite:
+      uri: "/"
     route:
     - destination:
         host: {{ include "metric.name" . }}-grafana.{{ .Release.Namespace }}.svc.cluster.local

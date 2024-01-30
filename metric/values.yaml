@@ -6,3 +6,8 @@ prometheus:
     baseURL: "http://localhost:80/prometheus"
     extraArgs:
       web.route-prefix: "/"
+grafana:
+  grafana.ini:
+    server:
+      root_url: 'http://localhost:3000/grafana/'
+      serve_from_sub_path: true
