@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: grafana-vs
+  name: metric-vs
   namespace: {{ .Release.Namespace }}
 spec:
   hosts:
@@ -9,7 +9,8 @@ spec:
   gateways:
   - metric-gateway
   http:
-  - match:
+  - name: grafana
+    match:
     - uri:
         exact: /grafana
     - uri:
@@ -19,5 +20,18 @@ spec:
     route:
     - destination:
         host: {{ include "metric.name" . }}-grafana.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 80
+  - name: prometheus
+    match:
+    - uri:
+        exact: /prometheus
+    - uri:
+        prefix: /prometheus/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: {{ include "metric.name" . }}-prometheus-server.{{ .Release.Namespace }}.svc.cluster.local
         port:
           number: 80
