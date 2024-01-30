@@ -14,4 +14,4 @@ gateway:
     type: ClusterIP
     annotations: 
       "cloud.google.com/neg": '{"ingress": true}'
-      "cloud.google.com/backend-config": '{"ports": {"http":"istio-backend-config"}}'
+      "cloud.google.com/backend-config": '{"default": "istio-backend-config"}'

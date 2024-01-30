@@ -8,6 +8,7 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: {{ .Values.ingress.staticIpName }}
     networking.gke.io/managed-certificates: {{ include "istio.name" .}}-managed-cert
     networking.gke.io/v1beta1.FrontendConfig: {{ include "istio.name" .}}-frontend-config
+    kubernetes.io/ingress.class: "gce"
 spec:
   rules:
     - host: {{ .Values.ingress.domain }}
