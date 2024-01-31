@@ -7,6 +7,8 @@ prometheus:
     extraArgs:
       web.route-prefix: "/"
 grafana:
+  persistence:
+    enabled: true
   grafana.ini:
     server:
       root_url: 'http://localhost:3000/grafana/'
