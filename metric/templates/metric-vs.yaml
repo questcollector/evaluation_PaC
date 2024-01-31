@@ -9,6 +9,19 @@ spec:
   gateways:
   - metric-gateway
   http:
+  - name: jaeger
+    match:
+    - uri:
+        exact: /jaeger
+    - uri:
+        prefix: /jaeger
+    - uri:
+        prefix: /js
+    route:
+    - destination:
+        host: {{ include "metric.name" . }}-jaeger-query.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 80
   - name: grafana
     match:
     - uri:
