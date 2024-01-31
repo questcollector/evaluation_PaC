@@ -9,6 +9,17 @@ spec:
   gateways:
   - metric-gateway
   http:
+  - name: kiali
+    match:
+    - uri:
+        exact: /kiali
+    - uri:
+        prefix: /kiali
+    route:
+    - destination:
+        host: kiali.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 20001
   - name: jaeger
     match:
     - uri:
