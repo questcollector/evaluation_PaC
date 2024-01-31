@@ -13,3 +13,17 @@ grafana:
     server:
       root_url: 'http://localhost:3000/grafana/'
       serve_from_sub_path: true
+kiali:
+  auth:
+    strategy: "anonymous"
+  external_services:
+    prometheus:
+      url: http://metric-prometheus-server
+    tracing:
+      in_cluster_url: http://metric-jaeger-query/jaeger
+    grafana:
+      in_cluster_url: http://metric-grafana
+    custom_dashboards:
+      enabled: false
+    istio:
+      root_namespace: "istio-system"
