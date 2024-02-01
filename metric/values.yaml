@@ -1,5 +1,7 @@
-global:
-  url: "www.evaluatemessage.dev"
+ingress:
+  domain: "admin.evaluatemessage.dev"
+  staticIpName: "metric-ingress-ip"
+  istio_gateway: "istio-ingressgateway"
 
 prometheus:
   server:
