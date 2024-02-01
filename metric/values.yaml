@@ -16,7 +16,7 @@ grafana:
 jaeger:
   query:
     basePath: /jaeger
-kiali:
+kiali-server:
   auth:
     strategy: "anonymous"
   external_services:
