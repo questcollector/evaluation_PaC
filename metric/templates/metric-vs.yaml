@@ -28,6 +28,8 @@ spec:
         prefix: /jaeger
     - uri:
         prefix: /js
+    - uri:
+        prefix: /static
     route:
     - destination:
         host: {{ include "metric.name" . }}-jaeger-query.{{ .Release.Namespace }}.svc.cluster.local
