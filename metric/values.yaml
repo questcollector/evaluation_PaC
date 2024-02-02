@@ -34,7 +34,7 @@ kiali-server:
       root_namespace: "istio-system"
 oauth2-proxy:
   config:
-    existingSecret: metric-oauth2-proxy
+    existingSecret: oauth2-proxy
   extraArgs:
     provider: github
     redirect-url: https://admin.evaluatemessage.dev/oauth2/callback
