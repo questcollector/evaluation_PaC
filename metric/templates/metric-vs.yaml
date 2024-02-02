@@ -9,6 +9,17 @@ spec:
   gateways:
   - metric-gateway
   http:
+  - name: oauth2-proxy
+    match:
+    - uri:
+        exact: /oauth2
+    - uri:
+        prefix: /oauth2
+    route:
+    - destination:
+        host: {{ include "metric.name" . }}-oauth2-proxy.{{ .Release.Namespace }}.svc.cluster.local
+        port:
+          number: 4180
   - name: kiali
     match:
     - uri:
