@@ -21,7 +21,7 @@ istiod:
     - name: "oauth2-proxy"
       envoyExtAuthzHttp:
         service: "metric-oauth2-proxy.istio-system.svc.cluster.local"
-        port: "4180" # The default port used by oauth2-proxy.
+        port: "80" # The default port used by oauth2-proxy.
         includeHeadersInCheck: # headers sent to the oauth2-proxy in the check request.
             - "cookie"
             - "x-forwarded-access-token"
