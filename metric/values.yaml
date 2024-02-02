@@ -35,4 +35,7 @@ kiali-server:
 oauth2-proxy:
   config:
     existingSecret: metric-oauth2-proxy
+  extraArgs:
+    provider: github
+    redirect-url: https://admin.evaluatemessage.dev/oauth2/callback
 
