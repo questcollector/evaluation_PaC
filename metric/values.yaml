@@ -34,5 +34,5 @@ kiali-server:
       root_namespace: "istio-system"
 oauth2-proxy:
   config:
-    existingSecret: oauth2-proxy
+    existingSecret: metric-oauth2-proxy
 
