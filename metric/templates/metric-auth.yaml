@@ -17,3 +17,6 @@ spec:
           - {{ .Values.ingress.domain }}
           paths: 
           - "/kiali*"
+          - "/prometheus*"
+          - "/grafana*"
+          - "/jaeger*"

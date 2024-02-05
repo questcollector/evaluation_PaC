@@ -69,5 +69,6 @@ oauth2-proxy:
     auth-logging: true
     request-logging: true
     silence-ping-logging: true
+    upstream: static://200
     
 
