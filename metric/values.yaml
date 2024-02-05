@@ -8,18 +8,29 @@ prometheus:
     baseURL: "http://localhost:80/prometheus"
     extraArgs:
       web.route-prefix: "/"
+    podLabels: 
+      app: metric-prometheus-server
 grafana:
   extraLabels:
-    app: grafana
+    app: metric-grafana
   persistence:
     enabled: true
   grafana.ini:
     server:
       root_url: 'http://localhost:3000/grafana/'
       serve_from_sub_path: true
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://metric-prometheus-server.istio-system.svc.cluster.local
+        access: proxy
+        isDefault: true
 jaeger:
   labels:
-    app: jaeger
+    app: metric-jaeger
   provisionDataStore:
     cassandra: false
   allInOne:
