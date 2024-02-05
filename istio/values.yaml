@@ -20,7 +20,7 @@ istiod:
     defaultConfig:
       tracing:
         zipkin:
-          address: metric-jaeger-collector.istio-system.svc.cluster.local:9411
+          address: metric-jaeger-collector.istio-system.svc:9411
     extensionProviders:
     - name: "oauth2-proxy"
       envoyExtAuthzHttp:
