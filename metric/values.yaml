@@ -9,10 +9,10 @@ prometheus:
     extraArgs:
       web.route-prefix: "/"
     podLabels: 
-      app: metric-prometheus-server
+      app: prometheus-server
 grafana:
-  extraLabels:
-    app: metric-grafana
+  podLabels:
+    app: grafana
   persistence:
     enabled: true
   grafana.ini:
@@ -29,8 +29,6 @@ grafana:
         access: proxy
         isDefault: true
 jaeger:
-  labels:
-    app: metric-jaeger
   provisionDataStore:
     cassandra: false
   allInOne:
@@ -38,6 +36,8 @@ jaeger:
     extraEnv:
     - name: QUERY_BASE_PATH
       value: /jaeger
+    podLabels:
+      app: jaeger
   storage:
     type: none
   agent:
