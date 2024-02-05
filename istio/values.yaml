@@ -17,6 +17,10 @@ gateway:
       "cloud.google.com/backend-config": '{"default": "istio-backend-config"}'
 istiod:
   meshConfig:
+    defaultConfig:
+      tracing:
+        zipkin:
+          address: metric-jaeger-collector.istio-system.svc.cluster.local:9411
     extensionProviders:
     - name: "oauth2-proxy"
       envoyExtAuthzHttp:
