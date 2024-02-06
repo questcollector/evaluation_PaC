@@ -1,0 +1,74 @@
+ingress:
+  domain: "admin.evaluatemessage.dev"
+  staticIpName: "metric-ingress-ip"
+  istio_gateway: "istio-ingressgateway"
+
+prometheus:
+  server:
+    baseURL: "http://localhost:80/prometheus"
+    extraArgs:
+      web.route-prefix: "/"
+    podLabels: 
+      app: prometheus-server
+grafana:
+  podLabels:
+    app: grafana
+  persistence:
+    enabled: true
+  grafana.ini:
+    server:
+      root_url: 'http://localhost:3000/grafana/'
+      serve_from_sub_path: true
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://metric-prometheus-server.istio-system.svc.cluster.local
+        access: proxy
+        isDefault: true
+jaeger:
+  provisionDataStore:
+    cassandra: false
+  allInOne:
+    enabled: true
+    extraEnv:
+    - name: QUERY_BASE_PATH
+      value: /jaeger
+    podLabels:
+      app: jaeger
+  storage:
+    type: none
+  agent:
+    enabled: false
+  collector:
+    enabled: false
+  query:
+    enabled: false
+kiali-server:
+  auth:
+    strategy: "anonymous"
+  external_services:
+    prometheus:
+      url: http://metric-prometheus-server
+    tracing:
+      in_cluster_url: http://metric-jaeger-query/jaeger
+    grafana:
+      in_cluster_url: http://metric-grafana
+    custom_dashboards:
+      enabled: false
+    istio:
+      root_namespace: "istio-system"
+oauth2-proxy:
+  config:
+    existingSecret: oauth2-proxy
+  extraArgs:
+    provider: google
+    standard-logging: true
+    auth-logging: true
+    request-logging: true
+    silence-ping-logging: true
+    upstream: static://200
+    
+
